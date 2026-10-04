@@ -185,6 +185,21 @@
     };
   };
 
+  programs.librewolf = {
+    enable = true;
+    package = pkgs-unstable.librewolf;
+
+    settings = {
+      "intl.locale.requested" = "ru";
+      "privacy.spoof_english" = 2;
+    };
+
+    policies.ExtensionSettings."langpack-ru@firefox.mozilla.org" = {
+      installation_mode = "normal_installed";
+      install_url = "https://addons.mozilla.org/firefox/downloads/latest/russian-ru-language-pack/latest.xpi";
+    };
+  };
+
   programs.plasma = {
     enable = true;
 
@@ -232,6 +247,7 @@
       autoLock = true;
     };
 
+    configFile."ksmserverrc"."General"."loginMode" = "emptySession";
     configFile."kwinrc"."Effect-overview"."BorderActivate" = "";
     configFile."kdeglobals"."General"."AccentColorFromWallpaper" = true;
     configFile."baloofilerc"."Basic Settings"."Indexing-Enabled" = false;
