@@ -172,6 +172,17 @@
 
   home.stateVersion = "26.05";
 
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/html" = "librewolf.desktop";
+      "x-scheme-handler/http" = "librewolf.desktop";
+      "x-scheme-handler/https" = "librewolf.desktop";
+      "x-scheme-handler/about" = "librewolf.desktop";
+      "x-scheme-handler/unknown" = "librewolf.desktop";
+    };
+  };
+
   programs.plasma = {
     enable = true;
 
@@ -222,7 +233,8 @@
     configFile."kwinrc"."Effect-overview"."BorderActivate" = "";
     configFile."kdeglobals"."General"."AccentColorFromWallpaper" = true;
     configFile."baloofilerc"."Basic Settings"."Indexing-Enabled" = false;
-    programs.plasma.configFile."kwalletrc"."Wallet"."Enabled" = false;
+    configFile."kwalletrc"."Wallet"."Enabled" = false;
+    configFile."kdeglobals"."General"."BrowserApplication" = "librewolf.desktop";
   };
 };
   ############################################################################
@@ -292,15 +304,15 @@
     vlc
 
     # образовательное ПО
-    geogebra
-    stellarium
-    kicad
+    #geogebra
+    #stellarium
+    #kicad
 
     # кодеки
-    gst_all_1.gst-plugins-good
-    gst_all_1.gst-plugins-bad
-    gst_all_1.gst-plugins-ugly
-    gst_all_1.gst-libav
+    #gst_all_1.gst-plugins-good
+    #gst_all_1.gst-plugins-bad
+    #gst_all_1.gst-plugins-ugly
+    #gst_all_1.gst-libav
 
   ];
 
