@@ -18,8 +18,11 @@
   boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  boot.blacklistedKernelModules = [ ];
   boot.kernelModules = [ "i2c-dev" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ ];
+  hardware.firmware = with pkgs; [ linux-firmware ];
+  hardware.enableRedistributableFirmware = true;
   hardware.i2c.enable = true;
 
   ############################################################################
@@ -112,7 +115,6 @@
 
   services.udev.extraRules = ''
     KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"
-    SUBSYSTEM=="input", ATTRS{phys}=="usb-0000:02:00.0-5.3/input1", ENV{LIBINPUT_IGNORE_DEVICE}="1"
 '';
 
   ############################################################################
