@@ -220,6 +220,9 @@
     };
 
     configFile."kwinrc"."Effect-overview"."BorderActivate" = "";
+    configFile."kdeglobals"."General"."AccentColorFromWallpaper" = true;
+    configFile."baloofilerc"."Basic Settings"."Indexing-Enabled" = false;
+    programs.plasma.configFile."kwalletrc"."Wallet"."Enabled" = false;
   };
 };
   ############################################################################
