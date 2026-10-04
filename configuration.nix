@@ -226,10 +226,10 @@
   # FILESYSTEMS / MOUNTS
   ############################################################################
 
-  #fileSystems."/" = {
-  #  fsType = "btrfs";
-  #  options = [ "compress=zstd" "noatime" ];
-  #};
+  fileSystems."/" = {
+    fsType = "btrfs";
+    options = [ "compress=zstd" "noatime" ];
+  };
 
   ############################################################################
   # PACKAGES
@@ -277,14 +277,12 @@
     pkgs-unstable.gimp
     libreoffice-qt
     qbittorrent
-    obs-studio
     godot_4_7
     obsidian
     inkscape
     audacity
     blender
     freecad
-    vscodium
     vscode
     reaper
     krita
@@ -307,11 +305,11 @@
   # ZRAM
   ############################################################################
 
-  zramSwap = {
-  enable = true;
-  memoryPercent = 20;   # % от RAM, отводимый под zram
-  algorithm = "zstd";
-  };
+  #zramSwap = {
+  #enable = true;
+  #memoryPercent = 20;   # % от RAM, отводимый под zram
+  #algorithm = "zstd";
+  #};
 
   ############################################################################
   # NIX GARBAGE COLLECTION
