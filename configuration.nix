@@ -74,6 +74,7 @@
     noto-fonts-cjk-sans
     liberation_ttf
     adwaita-fonts
+    corefonts
   ];
 
   ############################################################################
@@ -182,21 +183,6 @@
       "x-scheme-handler/https" = "librewolf.desktop";
       "x-scheme-handler/about" = "librewolf.desktop";
       "x-scheme-handler/unknown" = "librewolf.desktop";
-    };
-  };
-
-  programs.librewolf = {
-    enable = true;
-    package = pkgs-unstable.librewolf;
-
-    settings = {
-      "intl.locale.requested" = "ru";
-      "privacy.spoof_english" = 2;
-    };
-
-    policies.ExtensionSettings."langpack-ru@firefox.mozilla.org" = {
-      installation_mode = "normal_installed";
-      install_url = "https://addons.mozilla.org/firefox/downloads/latest/russian-ru-language-pack/latest.xpi";
     };
   };
 
@@ -326,11 +312,11 @@
     #stellarium
     #kicad
 
-    # кодеки
-    #gst_all_1.gst-plugins-good
-    #gst_all_1.gst-plugins-bad
-    #gst_all_1.gst-plugins-ugly
-    #gst_all_1.gst-libav
+     кодеки
+    gst_all_1.gst-plugins-good
+    gst_all_1.gst-plugins-bad
+    gst_all_1.gst-plugins-ugly
+    gst_all_1.gst-libav
 
   ];
 
@@ -338,11 +324,13 @@
   # ZRAM
   ############################################################################
 
-  #zramSwap = {
-  #enable = true;
-  #memoryPercent = 20;   # % от RAM, отводимый под zram
-  #algorithm = "zstd";
-  #};
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 50;
+    memoryMax = 2 * 1024 * 1024 * 1024;
+    priority = 100;
+  };
 
   ############################################################################
   # NIX GARBAGE COLLECTION
@@ -361,6 +349,15 @@
   ############################################################################
   # SYSTEM / NIX
   ############################################################################
+
+  nix.daemonCPUSchedPolicy = "idle";
+  nix.daemonIOSchedClass = "idle";
+  nix.daemonIOSchedPriority = 7;
+
+  nix.settings = {
+    max-jobs = 2;
+    cores = 4;
+  };
 
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
